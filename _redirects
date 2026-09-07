@@ -1,0 +1,13 @@
+# Preserve the original site's URLs (Netlify-style redirects; harmless elsewhere).
+/about/                      /about.html                      301
+/employment-opportunities/   /employment-opportunities.html   301
+/reviews/                    /reviews.html                    301
+/snack-bar-menu/             /snack-bar-menu.html             301
+/11th-frame-club/            /11th-frame-club.html            301
+/leagues/                    /leagues.html                    301
+/pro-shop/                   /pro-shop.html                   301
+/specials-and-events/        /specials-and-events.html        301
+/reservations/               /reservations.html               301
+/rates/                      /rates.html                      301
+/gallery/                    /gallery.html                    301
+/contact-us/                 /contact-us.html                 301
