@@ -335,7 +335,7 @@ ${reserve === 'form' ? reserveSection() : reserve === 'band' ? reserveBand() : '
     </div>
     <div class="footer-bottom">
       <span>Copyright © ${new Date().getFullYear()} ${site.name}, all rights reserved. ${site.address.street}, ${site.address.city}, ${site.address.state} ${site.address.zip} · ${site.phonePretty}</span>
-      <span><a href="${site.facebook}" target="_blank" rel="noopener">${esc(site.managementNote)}</a> · <a class="install-link" href="#" data-install>${icon('install')} Install app</a> <span class="offline-badge">${icon('wifiOff')} Offline</span></span>
+      <span class="footer-bottom__links"><a class="footer-pill" href="${site.facebook}" target="_blank" rel="noopener">${icon('facebook')} ${esc(site.managementNote)}</a><a class="footer-pill" href="#" data-install>${icon('install')} Install app</a><span class="footer-pill offline-badge">${icon('wifiOff')} Offline</span></span>
     </div>
   </div>
 </footer>
