@@ -1,0 +1,15 @@
+{
+  "name": "greenacres-bowl",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Green Acres Bowl — Tyler, TX. Static, installable (PWA) marketing site.",
+  "type": "module",
+  "scripts": {
+    "build": "node src/build.mjs",
+    "icons": "python3 scripts/make-icons.py",
+    "assets": "bash scripts/fetch-original-assets.sh",
+    "dev": "npx --yes http-server . -p 8080 -c-1 -s",
+    "check": "node tests/check.mjs"
+  },
+  "license": "UNLICENSED"
+}

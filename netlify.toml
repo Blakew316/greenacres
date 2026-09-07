@@ -1,0 +1,21 @@
+# Optional: Netlify deploy settings. The site is plain static HTML, so it
+# also works on GitHub Pages, Vercel, Cloudflare Pages or any web server.
+[build]
+  publish = "."
+  command = "node src/build.mjs"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+    Service-Worker-Allowed = "/"
+
+[[headers]]
+  for = "/manifest.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
