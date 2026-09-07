@@ -2,13 +2,13 @@ import { site, icon, pageHero, field, textarea, choices, fileField, securityChec
 
 const yesNo = (name, label) => choices({ name, label, options: ['Yes', 'No'], required: true });
 const list = (prefix, title, cols, required = false) => `<h4>${esc(title)}</h4><div class="form__row form__row--${Math.min(cols.length, 3)}">${cols.map((c) => field({ name: `${prefix}_${c.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`, label: c, required })).join('')}</div>`;
-const job = (n, required) => `<div class="fieldset-wrap mt-1"><fieldset class="fieldset"><legend>Employment Position ${n}${required ? '' : ' (optional)'}</legend>
+const job = (n, required) => `<fieldset class="fieldset"><legend>Employment Position ${n}${required ? '' : ' (optional)'}</legend>
 <div class="form__row form__row--3">${field({ name: `job${n}_employer`, label: 'Previous Employer', required })}${field({ name: `job${n}_address`, label: 'Address', required })}${field({ name: `job${n}_telephone`, label: 'Telephone', type: 'tel', required })}</div>
 <div class="form__row form__row--3">${field({ name: `job${n}_start`, label: 'Start Date', required })}${field({ name: `job${n}_end`, label: 'Termination Date', required })}${field({ name: `job${n}_pay`, label: 'Rate of Pay', required })}</div>
 <div class="form__row form__row--2">${field({ name: `job${n}_title`, label: 'Job Title', required })}${field({ name: `job${n}_supervisor`, label: "Supervisor's Name", required })}</div>
 <div class="form__row form__row--2">${field({ name: `job${n}_reason`, label: 'Reason for Leaving', required })}${field({ name: `job${n}_contact`, label: 'May we Contact?', required, placeholder: 'Yes / No' })}</div>
 ${textarea({ name: `job${n}_duties`, label: 'Brief Description of Duties', required, rows: 3 })}
-</fieldset></div>`;
+</fieldset>`;
 const school = (key, title) => `<fieldset class="fieldset"><legend>${esc(title)}</legend><div class="form__row form__row--3">${field({ name: `${key}_school`, label: 'Name and Location of School' })}${field({ name: `${key}_degree`, label: 'Degree Earned? Y/N', placeholder: 'Y / N' })}${field({ name: `${key}_major`, label: 'Major/Minor Field of Study' })}</div></fieldset>`;
 const ref = (n) => `<fieldset class="fieldset"><legend>Reference ${n}</legend><div class="form__row form__row--4">${field({ name: `ref${n}_name`, label: 'Name', required: true })}${field({ name: `ref${n}_telephone`, label: 'Telephone', type: 'tel', required: true })}${field({ name: `ref${n}_address`, label: 'Address', required: true })}${field({ name: `ref${n}_relationship`, label: 'Relationship', required: true })}</div></fieldset>`;
 
@@ -59,12 +59,12 @@ ${pageHero({ eyebrow: 'Employment Opportunities', title: 'Work somewhere fun.', 
       </div>
 
       <div class="form__section"><h3>Education and Training</h3><p>List the schools you have attended.</p>
-        <div class="stack">${school('highschool', 'High School/Trade School')}${school('business', 'Business/Technical School')}${school('college', 'College')}</div>
+        ${school('highschool', 'High School/Trade School')}${school('business', 'Business/Technical School')}${school('college', 'College')}
         ${textarea({ name: 'other_training', label: 'Other Training (Explain)', rows: 3 })}
       </div>
 
       <div class="form__section"><h3>References</h3><p>Please provide three references.</p>
-        <div class="stack">${ref(1)}${ref(2)}${ref(3)}</div>
+        ${ref(1)}${ref(2)}${ref(3)}
       </div>
 
       <div class="form__section"><h3>Applicant's Statement</h3>
@@ -74,7 +74,7 @@ ${pageHero({ eyebrow: 'Employment Opportunities', title: 'Work somewhere fun.', 
           <p>If hired, an employment relationship is established, I understand that I have the right to terminate my employment at any time and that ${site.name} retains a similar right. I confirm that no promise regarding employment (or terms and benefits thereof) has been made to me and I understand that no such promise or commitment will be binding upon any part(s) herein unless it is made in writing and signed by the General Manager or owner of ${site.name}.</p>
           <p class="mb-0"><strong>MY SIGNATURE BELOW INDICATES THAT I HAVE READ, UNDERSTAND, AND AGREE TO THE ABOVE STATEMENTS.</strong></p>
         </div>
-        <div class="mt-1">${field({ name: 'signature', label: 'Applicant Signature', required: true, hint: 'Please type your full name.', placeholder: 'Full legal name' })}</div>
+        ${field({ name: 'signature', label: 'Applicant Signature', required: true, hint: 'Please type your full name.', placeholder: 'Full legal name' })}
         ${fileField({ name: 'resume', label: 'Resume', hint: 'PDF, Word document or image — optional but recommended.' })}
         ${securityCheck()}
       </div>
