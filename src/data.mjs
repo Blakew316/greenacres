@@ -25,7 +25,9 @@ export const site = {
   googleReview:
     'https://www.google.com/search?q=Green+Acres+Bowl,+2311+E+SE+Loop+323,+Tyler,+TX+75703&ludocid=16875191981917651945#lrd=0x8649cc431e089a49:0xea30b9b2eeb8c3e9,1',
   booking: 'https://us.partywirks.com/storefront_express/main/vendor/green_acres_bowl/12/337',
-  website: 'https://greenacresbowl.com',
+  website: 'https://greenacresbowlingtyler.com',
+  domain: 'greenacresbowlingtyler.com',
+  legacyWebsite: 'https://greenacresbowl.com',
   founded: 1957,
   lanes: 32,
   announcement: 'Call about our upcoming specials & events!',

@@ -1,6 +1,6 @@
 # Green Acres Bowl — website & PWA
 
-A complete redesign of [greenacresbowl.com](https://greenacresbowl.com) (Tyler, TX): a fast, installable, static site themed entirely around the Green Acres Bowl logo — navy and steel-blue hues, silver and white — with Apple-style typography, line icons, and bowling-themed scroll animations.
+The website for Green Acres Bowl (Tyler, TX), live at [greenacresbowlingtyler.com](https://greenacresbowlingtyler.com) and rebuilt from the original greenacresbowl.com: a fast, installable, static site themed entirely around the Green Acres Bowl logo — navy and steel-blue hues, silver and white — with Apple-style typography, line icons, and bowling-themed scroll animations.
 
 ## What's here
 

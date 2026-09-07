@@ -36,7 +36,7 @@ ${pageHero({ eyebrow: 'Amenities · Leagues', title: 'League Schedule', lead: 'A
           <strong>${site.legalName}</strong><br>
           <span class="muted">${site.address.street}, ${site.address.city}, ${site.address.state} ${site.address.zip}</span><br>
           <a href="${site.phoneHref}">${site.phone}</a><br>
-          <a href="${site.website}" target="_blank" rel="noopener">greenacresbowl.com</a><br>
+          <a href="${site.website}" target="_blank" rel="noopener">${site.domain}</a><br>
           <a href="${site.facebook}" target="_blank" rel="noopener">www.facebook.com/greenacresbowllp</a>
         </div>
       </div>
