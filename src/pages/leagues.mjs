@@ -11,15 +11,15 @@ ${pageHero({ eyebrow: 'Amenities · Leagues', title: 'League Schedule', lead: 'A
 <section class="section section--flush-top">
   <div class="container">
     <div class="split split--40">
-      <div data-reveal>
+      <div class="stack" data-reveal>
         ${sectionHead({ eyebrow: 'Our leagues', title: 'Find a league to call your own.', lead: 'From Monday morning seniors to Thursday night mixed and a youth scholarship league — there\'s a spot for every bowler.', reveal: false })}
-        <ul class="pill-list mb-2">${leagues.map((l) => `<li>${icon('trophy')} ${l}</li>`).join('')}</ul>
+        <ul class="pill-list pill-list--grid">${leagues.map((l) => `<li>${icon('trophy')} ${l}</li>`).join('')}</ul>
         <div class="card card--tint"><div class="feature-row"><span class="icon-badge">${icon('ticket')}</span><div class="feature"><h3>Local USBC members bowl $2.50 games</h3><p>See all rates and specials on the <a href="rates.html">Rates page ${icon('arrowRight', { size: 14 })}</a></p></div></div></div>
       </div>
-      <div data-reveal="right">
-        <span class="eyebrow">Schedule</span>
+      <div class="stack" data-reveal="right">
+        ${sectionHead({ eyebrow: 'Schedule', title: 'This season\'s schedule', lead: 'Tap to enlarge, or download the PDF.', reveal: false })}
         <a href="${originals.leagueSchedule}" target="_blank" rel="noopener">${photo({ src: originals.leagueSchedule, alt: 'League schedule', sheet: true, label: 'League Schedule' })}</a>
-        <div class="btn-row mt-1"><a class="btn btn--secondary" href="${originals.leagueSchedule}" target="_blank" rel="noopener">${icon('download')} PDF Schedule</a></div>
+        <div class="btn-row"><a class="btn btn--secondary" href="${originals.leagueSchedule}" target="_blank" rel="noopener">${icon('download')} PDF Schedule</a></div>
       </div>
     </div>
   </div>

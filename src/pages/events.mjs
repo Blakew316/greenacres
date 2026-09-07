@@ -18,9 +18,8 @@ ${pageHero({ eyebrow: 'Plan Your Event', title: "Okay, we'll spare you the terri
         <p>We've been providing hours of entertainment to Texas families for more than five decades and have revamped our facility to give you an updated bowling experience.</p>
         <p>Besides offering numerous ways to keep your family, employees or colleagues entertained, Green Acres Bowl also holds regular events and specials including <strong>Family Fun Night every Monday, Wednesday and Friday</strong>, as well as <strong>College Night every Tuesday and Thursday</strong>.</p>
         <p>Find a bowling league to call your own or rent our entire facility for a massive party your guests will never forget! Whichever night or event you choose, you won't regret bringing your family and friends to Green Acres Bowl in Tyler, TX.</p>
-        <div class="btn-row mt-2"><a class="btn btn--primary" href="reservations.html#reserve">${icon('calendar')} Reserve Now</a><a class="btn btn--ghost" href="contact-us.html">${icon('envelope')} Contact Us</a></div>
       </div>
-      <div data-reveal="right">${photo({ src: originals.events, alt: "Okay, We'll Spare You the Terrible Bowling Jokes...", ar: '4 / 3', label: 'Parties & Events' })}</div>
+      <div class="sticky-col" data-reveal="right">${photo({ src: originals.events, alt: "Okay, We'll Spare You the Terrible Bowling Jokes...", ar: '4 / 3', label: 'Parties & Events' })}</div>
     </div>
   </div>
 </section>

@@ -22,7 +22,7 @@ ${pageHero({ eyebrow: 'About Us', title: 'Providing Tyler, TX, with generations 
         <p>Come to Green Acres Bowl if you're ready for quality entertainment in Texas at a place that offers something for everyone.</p>
         <div class="btn-row mt-2"><a class="btn btn--secondary" href="specials-and-events.html">Plan Your Event ${icon('arrowRight')}</a><a class="btn btn--ghost" href="leagues.html">Join a League</a></div>
       </div>
-      <div class="stack" data-reveal="right">
+      <div class="stack sticky-col" data-reveal="right">
         ${photo({ src: originals.arcade, alt: 'The arcade at Green Acres Bowl', ar: '4 / 3', label: 'Arcade' })}
         <div class="card card--dark rays">
           <span class="eyebrow">Since ${site.founded}</span>
