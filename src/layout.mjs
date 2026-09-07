@@ -155,6 +155,7 @@ ${formClose({ label: 'Request reservation', note: 'Requests are confirmed by our
 }
 
 /* ----------------------------------------------------------------- shell */
+const ICON_V = '3'; // bump to force phones/browsers to refetch home-screen icons
 const splash = [
   [1320, 2868, 440, 956, 3], [1206, 2622, 402, 874, 3], [1290, 2796, 430, 932, 3], [1179, 2556, 393, 852, 3], [1284, 2778, 428, 926, 3], [1170, 2532, 390, 844, 3],
   [1125, 2436, 375, 812, 3], [1242, 2688, 414, 896, 3], [828, 1792, 414, 896, 2], [750, 1334, 375, 667, 2],
@@ -259,13 +260,13 @@ ${baseHref ? `<base href="${baseHref}">` : ''}
 <meta name="theme-color" content="${site.themeColor}">
 <meta name="color-scheme" content="light">
 <meta name="format-detection" content="telephone=yes">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
-<link rel="apple-touch-icon" sizes="167x167" href="assets/icons/apple-touch-icon-167.png">
-<link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-touch-icon-152.png">
+<link rel="manifest" href="manifest.webmanifest?v=${ICON_V}">
+<link rel="icon" href="favicon.ico?v=${ICON_V}" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png?v=${ICON_V}">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png?v=${ICON_V}">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png?v=${ICON_V}">
+<link rel="apple-touch-icon" sizes="167x167" href="assets/icons/apple-touch-icon-167.png?v=${ICON_V}">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-touch-icon-152.png?v=${ICON_V}">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
