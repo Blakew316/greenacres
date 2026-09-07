@@ -7,9 +7,9 @@ export default {
   description: 'Green Acres Bowl now takes online reservations. Reserve a lane, book a party or plan a large-group outing in Tyler, TX — or call 903-561-2911.',
   reserve: 'form',
   body: () => `
-${pageHero({ eyebrow: 'Plan Your Event · Reservations', title: 'Reservations', lead: 'Planning an outing or party for a large group? Want to make sure you secure a lane ahead of time? Green Acres Bowl now takes online reservations! Select the option that pertains to your needs, fill out the form, and we will take it from there!', crumbs: [{ label: 'Plan Your Event', href: 'specials-and-events.html' }, { label: 'Reservations' }], dark: true, actions: `<a class="btn btn--light btn--lg" href="${site.booking}" target="_blank" rel="noopener">${icon('calendar')} Book Now ${icon('arrowUpRight')}</a><a class="btn btn--glass btn--lg" href="#reserve">${icon('doc')} Request a reservation</a><a class="btn btn--glass btn--lg" href="${site.phoneHref}">${icon('phone')} ${site.phone}</a>` })}
+${pageHero({ eyebrow: 'Plan Your Event · Reservations', title: 'Reservations', lead: 'Planning an outing or party for a large group? Want to make sure you secure a lane ahead of time? Green Acres Bowl now takes online reservations! Select the option that pertains to your needs, fill out the form, and we will take it from there!', crumbs: [{ label: 'Plan Your Event', href: 'specials-and-events.html' }, { label: 'Reservations' }], actions: `<a class="btn btn--primary btn--lg" href="${site.booking}" target="_blank" rel="noopener">${icon('calendar')} Book Now ${icon('arrowUpRight')}</a><a class="btn btn--ghost btn--lg" href="#reserve">${icon('doc')} Request a reservation</a><a class="btn btn--ghost btn--lg" href="${site.phoneHref}">${icon('phone')} ${site.phone}</a>` })}
 
-<section class="section">
+<section class="section section--flush-top">
   <div class="container">
     ${sectionHead({ eyebrow: 'Two ways to book', title: 'Instant booking, or send us a request.' })}
     <div class="grid grid--2">

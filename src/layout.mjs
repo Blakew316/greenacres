@@ -17,12 +17,27 @@ export function photo({ src, alt = '', ar = '16 / 9', cls = '', sheet = false, l
 </figure>`;
 }
 
+export const fmtTime = (t) => t.replace(':00', '');
 export function hoursList({ compact = false } = {}) {
   const dayIdx = { Sunday: 0, Monday: 1, Tuesday: 2, Wednesday: 3, Thursday: 4, Friday: 5, Saturday: 6 };
   return `<ul class="hours" data-hours>
-${site.hours.map(([d, o, c, limited]) => `  <li data-day="${dayIdx[d]}"><span class="hours__day">${compact ? d.slice(0, 3) : d}${limited ? ' <span class="hours__mark" title="' + esc(site.hoursNote) + '">*</span>' : ''}</span><span class="hours__time">${o} – ${c}</span></li>`).join('\n')}
+${site.hours.map(([d, o, c, limited]) => `  <li data-day="${dayIdx[d]}"><span class="hours__day">${compact ? d.slice(0, 3) : d}${limited ? ' <span class="hours__mark" title="' + esc(site.hoursNote) + '">*</span>' : ''}</span><span class="hours__time">${fmtTime(o)} – ${fmtTime(c)}</span></li>`).join('\n')}
 </ul>
 <p class="hours-note">* ${esc(site.hoursNote)}</p>`;
+}
+
+/* One consistent "find us" block used on Home, About and Rates: info · hours · map, equal heights. */
+export function locationBlock({ eyebrow = 'Visit us', title = 'Come see us in Tyler.', lead = `${site.address.street}, ${site.address.city}, ${site.address.state} ${site.address.zip} · Open 7 days a week.`, titleId = 'visit-title' } = {}) {
+  return `<section class="section section--silver" aria-labelledby="${titleId}">
+  <div class="container">
+    ${sectionHead({ eyebrow, title: `<span id="${titleId}">${title}</span>`, lead, center: true })}
+    <div class="grid grid--3 location">
+      <div class="card location__card" data-reveal><h3>Find us</h3>${infoList()}<div class="btn-row mt-2"><a class="btn btn--primary" href="${site.directionsUrl}" target="_blank" rel="noopener">${icon('car')} Get Directions</a></div></div>
+      <div class="card location__card" data-reveal style="--i:1"><h3>Hours</h3>${hoursList()}</div>
+      <div class="map-col" data-reveal style="--i:2">${mapEmbed({ height: 380 })}</div>
+    </div>
+  </div>
+</section>`;
 }
 
 export function infoList({ dark = false } = {}) {
@@ -60,7 +75,7 @@ export function crumbs(items) {
 }
 
 export function pageHero({ eyebrow, title, lead, crumbs: c = [], actions = '', dark = false, extra = '' }) {
-  return `<section class="page-hero ${dark ? 'page-hero--dark rays' : 'rays rays--light'}">
+  return `<section class="page-hero rays rays--light">
   <div class="container">
     ${c.length ? crumbs(c) : ''}
     ${eyebrow ? `<span class="eyebrow" data-reveal>${esc(eyebrow)}</span>` : ''}

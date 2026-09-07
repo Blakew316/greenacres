@@ -6,15 +6,15 @@ export default {
   title: '11th Frame Club | Green Acres Bowl',
   description: "Green Acres Bowl's 11th Frame Club, Inc. — private club memberships with a full bar, dance floor, pool tables, TVs, live music and karaoke. 21 and up, non-smoking, open 7 days a week.",
   body: () => `
-${pageHero({ eyebrow: 'Amenities · 11th Frame Club', title: "Check out Green Acres Bowl's 11th Frame Club, Inc.!", lead: 'The 11th Frame Club offers private club memberships to enjoy all of our incredible amenities! From a full bar and dance floor to pool tables and several TVs (including a 72" TV!), you don\'t want to miss out!', crumbs: [{ label: 'Amenities' }, { label: '11th Frame Club' }], dark: true, actions: `<a class="btn btn--light" href="contact-us.html">${icon('envelope')} Contact Us</a><a class="btn btn--glass" href="${originals.clubMenuPdf}" target="_blank" rel="noopener">${icon('download')} Downloadable Version (menu)</a>` })}
+${pageHero({ eyebrow: 'Amenities · 11th Frame Club', title: "Check out Green Acres Bowl's 11th Frame Club, Inc.!", lead: 'The 11th Frame Club offers private club memberships to enjoy all of our incredible amenities! From a full bar and dance floor to pool tables and several TVs (including a 72" TV!), you don\'t want to miss out!', crumbs: [{ label: 'Amenities' }, { label: '11th Frame Club' }], actions: `<a class="btn btn--primary" href="contact-us.html">${icon('envelope')} Contact Us</a><a class="btn btn--ghost" href="${originals.clubMenuPdf}" target="_blank" rel="noopener">${icon('download')} Downloadable Version (menu)</a>` })}
 
-<section class="section">
+<section class="section section--flush-top">
   <div class="container">
     <div class="grid grid--4 mb-2">
       ${[['martini', 'Full bar', 'Drink specials and a dance floor.'], ['pool', 'Pool tables', 'Rack one up between frames.'], ['tv', 'Several TVs', 'Including a 72" screen for game day.'], ['cake', 'Private parties', 'Seasonal and birthday parties — booking is free of charge.']].map(([ic, t, d], i) => `<div class="card" data-reveal style="--i:${i}"><span class="icon-badge">${icon(ic)}</span><h3>${t}</h3><p class="muted mb-0">${d}</p></div>`).join('')}
     </div>
 
-    <div class="split split--60" style="align-items:start">
+    <div class="split split--60">
       <div data-reveal>
         ${sectionHead({ eyebrow: 'Membership', title: 'How to join', reveal: false })}
         <ul class="check-list mb-2">

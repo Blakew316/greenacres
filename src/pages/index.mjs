@@ -1,4 +1,4 @@
-import { site, icon, photo, hoursList, infoList, mapEmbed, reviewCard, sectionHead, reviews, esc } from '../layout.mjs';
+import { site, icon, photo, reviewCard, sectionHead, reviews, esc, locationBlock } from '../layout.mjs';
 import { originals } from '../data.mjs';
 
 const pinSVG = `<svg viewBox="0 0 30 86" aria-hidden="true"><path d="M15 2c-5 0-7.5 3.6-7.5 8 0 4.2 2.2 7 2.2 11.4 0 5.2-7 9.5-7 19.8C2.7 52.6 5.7 84 15 84s12.3-31.4 12.3-42.8c0-10.3-7-14.6-7-19.8 0-4.4 2.2-7.2 2.2-11.4C22.5 5.6 20 2 15 2z" fill="#fff" stroke="#c8d3da" stroke-width="1.5"/><path d="M8.6 26h12.8M8.2 31h13.6" stroke="#205878" stroke-width="2.4" stroke-linecap="round"/></svg>`;
@@ -48,9 +48,9 @@ export default {
 
 <section id="highlights" class="section" aria-labelledby="highlights-title">
   <div class="container">
-    ${sectionHead({ eyebrow: 'What’s new', title: '<span id="highlights-title">Better than ever.</span>', lead: 'Renovated lanes, new menus, new score monitors and a team that goes above and beyond.' })}
+    ${sectionHead({ eyebrow: 'What’s new', title: '<span id="highlights-title">Better than ever.</span>', lead: 'Renovated lanes, new menus, new score monitors and a team that goes above and beyond.', center: true })}
     <div class="bento">
-      ${highlights.map((h, i) => `<a class="tile ${h.span}" href="${h.href}" data-reveal style="--i:${i}">
+      ${highlights.map((h, i) => `<a class="tile" href="${h.href}" data-reveal style="--i:${i}">
         <div class="tile__media">${photo({ src: h.img, alt: h.title, label: h.kicker })}</div>
         <div class="tile__body"><span class="tile__kicker">${icon(h.icon)} ${esc(h.kicker)}</span><h3>${esc(h.title)}</h3><p>${esc(h.text)}</p><span class="link">${esc(h.cta)} ${icon('arrowRight')}</span></div>
       </a>`).join('')}
@@ -70,7 +70,7 @@ export default {
           <div class="lane__gutter lane__gutter--top"></div>
           <div class="lane__foul"></div>
           <div class="lane__arrows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-          <div class="pins">${Array.from({ length: 10 }, (_, i) => `<div class="pinv" style="--i:${i}">${pinSVG}</div>`).join('')}</div>
+          <div class="pins">${[1, 2, 3, 4].map((n, c) => `<div class="pins__col">${Array.from({ length: n }, (_, r) => `<div class="pinv" style="--i:${c * 3 + r}">${pinSVG}</div>`).join('')}</div>`).join('')}</div>
           <div class="strike-flash">STRIKE!</div>
           <div class="lane__gutter lane__gutter--bottom"></div>
         </div>
@@ -126,7 +126,7 @@ export default {
       <div class="stack" style="--stack:1rem" data-reveal="right">
         ${photo({ src: originals.arcade, alt: 'Inside Green Acres Bowl', ar: '4 / 3', label: 'Green Acres Bowl' })}
         <div class="grid grid--2">
-          ${[['lanes', '32 lanes', 'Lanes 1–12 synthetic, 13–32 wood'], ['forkKnife', 'Lane delivery', 'Full food & beverage bars'], ['pool', 'Pool tables', 'Plus arcade classics'], ['tv', 'TVs everywhere', 'Watch your favorite sports']].map(([ic, t, d], i) => `<div class="card"><div class="feature-row"><span class="icon-badge">${icon(ic)}</span><div class="feature"><h3>${t}</h3><p>${d}</p></div></div></div>`).join('')}
+          ${[['lanes', '32 lanes', 'Synthetic and wood lanes'], ['forkKnife', 'Lane delivery', 'Food and drinks to you'], ['pool', 'Pool tables', 'Plus arcade classics'], ['tv', 'Sports on TV', 'Watch every big game']].map(([ic, t, d], i) => `<div class="card"><div class="feature-row"><span class="icon-badge">${icon(ic)}</span><div class="feature"><h3>${t}</h3><p>${d}</p></div></div></div>`).join('')}
         </div>
       </div>
     </div>
@@ -141,12 +141,12 @@ export default {
 
 <section class="section section--tint" aria-labelledby="quick-title">
   <div class="container">
-    ${sectionHead({ eyebrow: 'Find your way', title: '<span id="quick-title">Everything you need, one tap away.</span>' })}
+    ${sectionHead({ eyebrow: 'Find your way', title: '<span id="quick-title">Everything you need, one tap away.</span>', center: true })}
     <div class="grid grid--4">
       ${quick.map((q, i) => `<a class="card card--hover" href="${q.href}" data-reveal style="--i:${i}"><span class="card__arrow">${icon('arrowUpRight')}</span><span class="icon-badge">${icon(q.icon)}</span><h3>${q.label}</h3><p class="muted">${q.text}</p></a>`).join('')}
     </div>
     <div class="card card--dark rays mt-2" data-reveal>
-      <div class="split" style="--gap:1rem">
+      <div class="split split--center" style="--gap:1rem">
         <div>
           <span class="badge badge--dark">${icon('badge')} We're hiring</span>
           <h3 class="mt-1">Apply now — we're looking for enthusiastic, friendly people to work in a fun environment.</h3>
@@ -160,34 +160,20 @@ export default {
 
 <section class="section" aria-labelledby="reviews-title">
   <div class="container">
-    <div class="section-head" data-reveal>
+    <div class="section-head section-head--center" data-reveal>
       <span class="eyebrow">Reviews</span>
       <h2 id="reviews-title">Read why Green Acres Bowl is the best bowling alley in Tyler, TX.</h2>
     </div>
     <div class="grid grid--3">
       ${[reviews[1], reviews[6], reviews[9]].map((r, i) => reviewCard(r, i)).join('')}
     </div>
-    <div class="btn-row mt-2" data-reveal>
+    <div class="btn-row btn-row--center mt-2" data-reveal>
       <a class="btn btn--secondary" href="reviews.html">Read all reviews ${icon('arrowRight')}</a>
       <a class="btn btn--ghost" href="${site.googleReview}" target="_blank" rel="noopener">${icon('google')} Leave us a Google review</a>
     </div>
   </div>
 </section>
 
-<section class="section section--silver" aria-labelledby="visit-title">
-  <div class="container">
-    <div class="split split--40">
-      <div class="stack" data-reveal>
-        <span class="eyebrow">Visit</span>
-        <h2 id="visit-title">${site.address.street}, ${site.address.city}, ${site.address.state} ${site.address.zip}</h2>
-        <div class="grid grid--2">
-          <div class="card"><h3>Hours</h3>${hoursList()}</div>
-          <div class="card">${infoList()}<div class="btn-row mt-2"><a class="btn btn--primary" href="${site.directionsUrl}" target="_blank" rel="noopener">${icon('car')} Get Directions</a></div></div>
-        </div>
-      </div>
-      <div data-reveal="right">${mapEmbed({ height: 460 })}</div>
-    </div>
-  </div>
-</section>
+${locationBlock()}
 `,
 };

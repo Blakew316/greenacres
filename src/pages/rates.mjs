@@ -1,4 +1,4 @@
-import { site, icon, photo, pageHero, sectionHead, hoursList, infoList, mapEmbed } from '../layout.mjs';
+import { site, icon, photo, pageHero, sectionHead, locationBlock } from '../layout.mjs';
 import { originals } from '../data.mjs';
 
 export default {
@@ -32,7 +32,7 @@ ${pageHero({ eyebrow: 'Plan Your Event · Rates', title: 'Rates & Specials', lea
 
 <section class="section section--silver" aria-labelledby="prices-title">
   <div class="container">
-    <div class="split split--40" style="align-items:start">
+    <div class="split split--40">
       <div data-reveal>
         ${sectionHead({ eyebrow: 'Price sheet', title: '<span id="prices-title">Current bowling prices</span>', lead: 'Tap to enlarge the full price sheet. Prices are subject to change — call the front desk for today\'s rates.', reveal: false })}
         <div class="card card--dark rays">
@@ -46,15 +46,6 @@ ${pageHero({ eyebrow: 'Plan Your Event · Rates', title: 'Rates & Specials', lea
   </div>
 </section>
 
-<section class="section" aria-labelledby="rates-loc-title">
-  <div class="container">
-    ${sectionHead({ eyebrow: 'Location & hours', title: `<span id="rates-loc-title">${site.name}</span>`, lead: `${site.address.street}, ${site.address.city}, ${site.address.state} ${site.address.zip}` })}
-    <div class="grid grid--3">
-      <div class="card" data-reveal>${infoList()}<div class="btn-row mt-2"><a class="btn btn--primary" href="${site.directionsUrl}" target="_blank" rel="noopener">${icon('car')} Get Directions</a></div></div>
-      <div class="card" data-reveal style="--i:1"><h3>Hours</h3>${hoursList()}</div>
-      <div data-reveal style="--i:2">${mapEmbed({ height: 380 })}</div>
-    </div>
-  </div>
-</section>
+${locationBlock({ titleId: 'rates-loc-title', eyebrow: 'Location & hours' })}
 `,
 };

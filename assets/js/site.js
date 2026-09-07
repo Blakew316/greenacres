@@ -146,6 +146,7 @@
   /* --------------------------------------------------------------- hours */
   // Highlights today's row and shows an "Open now / Closed" chip. Times are Central Time.
   const parseTime = (s) => { const m = /(\d+):(\d+)\s*(AM|PM)/i.exec(s); if (!m) return null; let h = +m[1] % 12; if (/pm/i.test(m[3])) h += 12; return h * 60 + +m[2]; };
+  const shortTime = (s) => s.replace(':00', '').replace(/\s*(AM|PM)/i, (m, ap) => ' ' + ap.toUpperCase());
   const hoursLists = $$('.hours[data-hours]');
   const chip = $('.open-chip');
   try {
@@ -160,10 +161,10 @@
       let open = false, label = 'Closed now';
       if (today) {
         const o = parseTime(today[1]); let c = parseTime(today[2]); if (c <= o) c += 1440;
-        if (now >= o && now < c) { open = true; label = `Open now · closes ${today[2]}`; }
-        else if (now < o) label = `Opens today at ${today[1]}`;
+        if (now >= o && now < c) { open = true; label = `Open now · closes ${shortTime(today[2])}`; }
+        else if (now < o) label = `Opens at ${shortTime(today[1])}`;
       }
-      if (!open && yest) { const o = parseTime(yest[1]); let c = parseTime(yest[2]); if (c <= o) { c -= 1440; if (now < c) { open = true; label = `Open now · closes ${yest[2]}`; } } }
+      if (!open && yest) { const o = parseTime(yest[1]); let c = parseTime(yest[2]); if (c <= o) { c -= 1440; if (now < c) { open = true; label = `Open now · closes ${shortTime(yest[2])}`; } } }
       chip.textContent = label; chip.classList.toggle('is-closed', !open); chip.hidden = false;
     }
   } catch (e) { /* non-critical */ }

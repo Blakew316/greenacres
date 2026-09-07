@@ -17,9 +17,9 @@ export default {
   title: 'Employment Opportunities | Green Acres Bowl',
   description: 'Join the Green Acres Bowl team in Tyler, TX. Positions for the front desk, the grill and a mechanics helper. Apply online with our employment application.',
   body: () => `
-${pageHero({ eyebrow: 'Employment Opportunities', title: 'Work somewhere fun.', lead: "Apply now — we're looking for enthusiastic, friendly people to work in a fun environment. We have positions for the front desk, the grill, and for a mechanics helper!", crumbs: [{ label: 'About Us', href: 'about.html' }, { label: 'Employment Opportunities' }], actions: `<a class="btn btn--primary" href="#application">${icon('badge')} Start your application</a><a class="btn btn--ghost" href="${site.phoneHref}">${icon('phone')} ${site.phone}</a>`, dark: true })}
+${pageHero({ eyebrow: 'Employment Opportunities', title: 'Work somewhere fun.', lead: "Apply now — we're looking for enthusiastic, friendly people to work in a fun environment. We have positions for the front desk, the grill, and for a mechanics helper!", crumbs: [{ label: 'About Us', href: 'about.html' }, { label: 'Employment Opportunities' }], actions: `<a class="btn btn--primary" href="#application">${icon('badge')} Start your application</a><a class="btn btn--ghost" href="${site.phoneHref}">${icon('phone')} ${site.phone}</a>` })}
 
-<section class="section">
+<section class="section section--flush-top">
   <div class="container">
     <div class="grid grid--3 mb-2">
       ${[['person', 'Front Desk', 'Welcome guests, set up lanes and keep the floor running smoothly.'], ['forkKnife', 'The Grill', 'Prepare our snack bar menu and deliver food and drinks to the lanes.'], ['wrench', 'Mechanics Helper', 'Help keep 32 lanes of pinsetters and scoring in top shape.']].map(([ic, t, d], i) => `<div class="card" data-reveal style="--i:${i}"><span class="icon-badge">${icon(ic)}</span><h3>${t}</h3><p class="muted mb-0">${d}</p></div>`).join('')}

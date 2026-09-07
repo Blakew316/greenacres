@@ -13,7 +13,7 @@ ${pageHero({ eyebrow: 'Reviews', title: 'Read why Green Acres Bowl is the best b
       ${reviews.map((r, i) => reviewCard(r, i)).join('')}
     </div>
     <div class="card card--dark rays mt-3" data-reveal>
-      <div class="split">
+      <div class="split split--center">
         <div><span class="eyebrow">Leave us a Review!</span><h2>Been in lately? Tell Tyler about it.</h2><p class="muted mb-0">If it's been a while since you've been in here, try it out again — then let us know how we did.</p></div>
         <div class="btn-row" style="justify-content:flex-end"><a class="btn btn--light btn--lg" href="${site.googleReview}" target="_blank" rel="noopener">${icon('google')} Google review</a><a class="btn btn--glass btn--lg" href="${site.facebookReviews}" target="_blank" rel="noopener">${icon('facebook')} Facebook review</a></div>
       </div>

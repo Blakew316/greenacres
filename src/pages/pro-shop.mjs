@@ -16,7 +16,7 @@ ${pageHero({ eyebrow: 'Amenities · Pro Shop', title: 'Check Out Our Brand New P
         <div class="prose"><p class="lead">Green Acres' Pro Shop keeps you from having to search around town for a shop that you can trust.</p><p><strong>Stop by our store at Green Acres Bowl today!</strong></p></div>
         <div class="card card--dark rays">
           <span class="eyebrow">Pro Shop Hours</span>
-          <ul class="hours">${site.proShopHours.map(([d, t]) => `<li><span class="hours__day">${d}</span><span class="hours__time">${t}</span></li>`).join('')}</ul>
+          <ul class="hours hours--free">${site.proShopHours.map(([d, t]) => `<li><span class="hours__day">${d}</span><span class="hours__time">${t}</span></li>`).join('')}</ul>
         </div>
       </div>
     </div>

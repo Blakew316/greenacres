@@ -13,7 +13,7 @@ ${pageHero({ eyebrow: 'Amenities · Snack Bar', title: 'Snack Bar Menu', lead: '
     <div class="grid grid--3 mb-2">
       ${[['forkKnife', 'Lane delivery', 'Order from your lane and we bring it to you.'], ['pizza', 'Fresh & affordable', 'Guests rave about the pizzas — and the prices.'], ['beer', 'Two bars', 'Alcoholic and non-alcoholic drinks, plus specials in the bar.']].map(([ic, t, d], i) => `<div class="card" data-reveal style="--i:${i}"><div class="feature-row"><span class="icon-badge">${icon(ic)}</span><div class="feature"><h3>${t}</h3><p>${d}</p></div></div></div>`).join('')}
     </div>
-    <div class="split" style="align-items:start">
+    <div class="split">
       <div data-reveal>
         ${sectionHead({ eyebrow: 'The menu', title: 'What\'s cooking', lead: 'Tap to enlarge. Prices and items are subject to change — ask at the snack bar for today\'s specials.', reveal: false })}
         <a href="${originals.snackBarMenu}" target="_blank" rel="noopener">${photo({ src: originals.snackBarMenu, alt: 'Green Acres Bowl snack bar menu', sheet: true, label: 'Snack Bar Menu' })}</a>

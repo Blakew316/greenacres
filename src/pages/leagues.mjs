@@ -10,7 +10,7 @@ ${pageHero({ eyebrow: 'Amenities · Leagues', title: 'League Schedule', lead: 'A
 
 <section class="section section--flush-top">
   <div class="container">
-    <div class="split split--40" style="align-items:start">
+    <div class="split split--40">
       <div data-reveal>
         ${sectionHead({ eyebrow: 'Our leagues', title: 'Find a league to call your own.', lead: 'From Monday morning seniors to Thursday night mixed and a youth scholarship league — there\'s a spot for every bowler.', reveal: false })}
         <ul class="pill-list mb-2">${leagues.map((l) => `<li>${icon('trophy')} ${l}</li>`).join('')}</ul>

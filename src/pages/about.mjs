@@ -1,4 +1,4 @@
-import { site, icon, photo, hoursList, infoList, mapEmbed, pageHero, sectionHead } from '../layout.mjs';
+import { site, icon, photo, pageHero, locationBlock } from '../layout.mjs';
 import { originals } from '../data.mjs';
 
 const features = [['lanes', '32 lanes'], ['forkKnife', 'Full service food and beverage bars, with lane delivery'], ['pool', 'Pool tables'], ['doc', 'Updated menus'], ['sparkles', 'Specials and events'], ['tv', 'TVs to watch sporting events'], ['gamepad', 'Arcade games']];
@@ -34,15 +34,6 @@ ${pageHero({ eyebrow: 'About Us', title: 'Providing Tyler, TX, with generations 
   </div>
 </section>
 
-<section class="section section--silver" aria-labelledby="loc-title">
-  <div class="container">
-    ${sectionHead({ eyebrow: 'Location', title: `<span id="loc-title">${site.name}</span>`, lead: `${site.address.street}, ${site.address.city}, ${site.address.state} ${site.address.zip}` })}
-    <div class="grid grid--3">
-      <div class="card" data-reveal>${infoList()}<div class="btn-row mt-2"><a class="btn btn--primary" href="${site.directionsUrl}" target="_blank" rel="noopener">${icon('car')} Get Directions</a><a class="btn btn--ghost" href="${site.phoneHref}">${icon('phone')} Call Us</a></div></div>
-      <div class="card" data-reveal style="--i:1"><h3>Hours</h3>${hoursList()}</div>
-      <div data-reveal style="--i:2">${mapEmbed({ height: 380 })}</div>
-    </div>
-  </div>
-</section>
+${locationBlock({ titleId: 'loc-title' })}
 `,
 };

@@ -8,9 +8,9 @@ export default {
   title: 'Parties and Events | Green Acres Bowl',
   description: 'Plan your party or event at Green Acres Bowl in Tyler, TX — corporate events, school outings, day care, team building, church events, birthday parties and college nights. Family Fun Night and College Night specials every week.',
   body: () => `
-${pageHero({ eyebrow: 'Plan Your Event', title: "Okay, we'll spare you the terrible bowling jokes…", lead: "But not the fun! Make memories you'll never forget at Green Acres Bowl.", crumbs: [{ label: 'Plan Your Event' }], dark: true, actions: `<a class="btn btn--light" href="reservations.html#reserve">${icon('calendar')} Reserve Now</a><a class="btn btn--glass" href="contact-us.html">${icon('envelope')} Contact Us</a>` })}
+${pageHero({ eyebrow: 'Plan Your Event', title: "Okay, we'll spare you the terrible bowling jokes…", lead: "But not the fun! Make memories you'll never forget at Green Acres Bowl.", crumbs: [{ label: 'Plan Your Event' }], actions: `<a class="btn btn--primary" href="reservations.html#reserve">${icon('calendar')} Reserve Now</a><a class="btn btn--ghost" href="contact-us.html">${icon('envelope')} Contact Us</a>` })}
 
-<section class="section">
+<section class="section section--flush-top">
   <div class="container">
     <div class="split split--60">
       <div class="prose" data-reveal>
