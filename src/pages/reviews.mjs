@@ -9,7 +9,7 @@ ${pageHero({ eyebrow: 'Reviews', title: 'Read why Green Acres Bowl is the best b
 
 <section class="section section--flush-top">
   <div class="container">
-    <div class="masonry">
+    <div class="grid grid--3">
       ${reviews.map((r, i) => reviewCard(r, i)).join('')}
     </div>
     <div class="card card--dark rays mt-3" data-reveal>

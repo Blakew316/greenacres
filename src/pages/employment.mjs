@@ -21,6 +21,7 @@ ${pageHero({ eyebrow: 'Employment Opportunities', title: 'Work somewhere fun.', 
 
 <section class="section section--flush-top">
   <div class="container">
+    <h2 class="visually-hidden">Open positions</h2>
     <div class="grid grid--3 mb-2">
       ${[['person', 'Front Desk', 'Welcome guests, set up lanes and keep the floor running smoothly.'], ['forkKnife', 'The Grill', 'Prepare our snack bar menu and deliver food and drinks to the lanes.'], ['wrench', 'Mechanics Helper', 'Help keep 32 lanes of pinsetters and scoring in top shape.']].map(([ic, t, d], i) => `<div class="card" data-reveal style="--i:${i}"><span class="icon-badge">${icon(ic)}</span><h3>${t}</h3><p class="muted mb-0">${d}</p></div>`).join('')}
     </div>
@@ -51,7 +52,7 @@ ${pageHero({ eyebrow: 'Employment Opportunities', title: 'Work somewhere fun.', 
         ${yesNo('drugs_ever', 'Have you ever used illegal drugs?')}
         ${yesNo('drugs_6mo', 'Have you used illegal drugs in the last 6 months?')}
         ${yesNo('felony', 'Have you ever been convicted of a felony or pled nolo contendere to a felony?')}
-        ${textarea({ name: 'felony_conditions', label: 'If yes, describe conditions:', rows: 3, placeholder: 'Write “N/A” if not applicable' })}
+        ${textarea({ name: 'felony_conditions', label: 'If yes, describe conditions:', rows: 3, placeholder: 'Required if you answered Yes', attrs: 'data-requires="felony=Yes"' })}
       </div>
 
       <div class="form__section"><h3>Work Experience</h3><p>Please start with your most recent employment.</p>

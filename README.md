@@ -36,7 +36,7 @@ Content lives in `src/data.mjs` (hours, address, nav, reviews, leagues) and `src
 
 ## Original images
 
-The source capture only contained HTML; the photos, menus, price sheet and PDFs are still hosted on the old site. Run `npm run assets` from any machine with internet access to download them into `assets/img/` and `assets/docs/` (see `scripts/assets-manifest.json` for the full list and where each is used). Until then every image slot shows a branded placeholder, so nothing looks broken.
+The source capture only contained HTML; the photos, menus, price sheet and PDFs are still hosted on the old site. Run `npm run assets` from any machine with internet access to download them into `assets/media/` (see `scripts/assets-manifest.json` for the full list and where each is used). Until then every image slot shows a branded placeholder, so nothing looks broken.
 
 ## Forms
 

@@ -146,7 +146,7 @@ export const eventTypes = [
   'College night',
 ];
 
-// Photos from the original site. They are downloaded into assets/img by
+// Photos from the original site. They are downloaded into assets/media by
 // scripts/fetch-original-assets.sh (see scripts/assets-manifest.json).
 export const gallery = [
   '282240722_7502444796493341_8367383920149319809_n.jpg',
@@ -163,28 +163,28 @@ export const gallery = [
   '37733381_2122594097811798_7922573382317506560_n.jpg',
   '38404940_2145287785542429_5831028646806028288_n.jpg',
   '38448628_2145277608876780_5212891374403190784_n.jpg',
-].map((f, i) => ({ src: `assets/img/gallery/${String(i + 1).padStart(2, '0')}.jpg`, original: `/files/${i < 2 ? '2022/07' : i < 8 ? '2021/11' : '2021/10'}/${f}`, alt: `Green Acres Bowl photo ${i + 1}` }));
+].map((f, i) => ({ src: `assets/media/gallery/${String(i + 1).padStart(2, '0')}.jpg`, original: `/files/${i < 2 ? '2022/07' : i < 8 ? '2021/11' : '2021/10'}/${f}`, alt: `Green Acres Bowl photo ${i + 1}` }));
 
 export const originals = {
-  heroReservations: 'assets/img/originals/green-acres-7f2.jpg',
-  heroArcade: 'assets/img/originals/green-acres-arcade.jpg',
-  heroSevenDays: 'assets/img/originals/dl-2.jpg',
-  heroProShop: 'assets/img/originals/ProShop.jpg',
-  tileAbout: 'assets/img/originals/aboutus.png',
-  tileRates: 'assets/img/originals/rates.png',
-  tileReviews: 'assets/img/originals/reviews.png',
-  tileContact: 'assets/img/originals/contact.png',
-  arcade: 'assets/img/originals/Arcade.jpg',
-  proShop: 'assets/img/originals/DSC01658.jpg',
-  events: 'assets/img/originals/image.jpeg',
-  rates: 'assets/img/originals/Bowling-prices-march-2024-opt.jpg',
-  snackBarHours: 'assets/img/originals/SNACK_BAR_HOURS.jpg',
-  snackBarMenu: 'assets/img/originals/white_Snack_Bar_Menu_page-0001.jpg',
-  snackBarMenuPdf: 'assets/docs/white_Snack_Bar_Menu.pdf',
-  clubHours: 'assets/img/originals/11TH_FRAME_CLUB_HOURS.jpg',
-  clubMenu: 'assets/img/originals/Copy_of_11th_Frame_Menu_page-0001.jpg',
-  clubMenuPdf: 'assets/docs/Copy-of-11th-Frame-Menu.pdf',
-  leagueSchedule: 'assets/img/originals/2024-2025_Fall_League_Schedule.jpg',
-  googleReviewButton: 'assets/img/originals/click-to-leave-review-small.png',
-  facebookReviewButton: 'assets/img/originals/facebook_review_button_2019.png',
+  heroReservations: 'assets/media/originals/green-acres-7f2.jpg',
+  heroArcade: 'assets/media/originals/green-acres-arcade.jpg',
+  heroSevenDays: 'assets/media/originals/dl-2.jpg',
+  heroProShop: 'assets/media/originals/ProShop.jpg',
+  tileAbout: 'assets/media/originals/aboutus.png',
+  tileRates: 'assets/media/originals/rates.png',
+  tileReviews: 'assets/media/originals/reviews.png',
+  tileContact: 'assets/media/originals/contact.png',
+  arcade: 'assets/media/originals/Arcade.jpg',
+  proShop: 'assets/media/originals/DSC01658.jpg',
+  events: 'assets/media/originals/image.jpeg',
+  rates: 'assets/media/originals/Bowling-prices-march-2024-opt.jpg',
+  snackBarHours: 'assets/media/originals/SNACK_BAR_HOURS.jpg',
+  snackBarMenu: 'assets/media/originals/white_Snack_Bar_Menu_page-0001.jpg',
+  snackBarMenuPdf: 'assets/media/docs/white_Snack_Bar_Menu.pdf',
+  clubHours: 'assets/media/originals/11TH_FRAME_CLUB_HOURS.jpg',
+  clubMenu: 'assets/media/originals/Copy_of_11th_Frame_Menu_page-0001.jpg',
+  clubMenuPdf: 'assets/media/docs/Copy-of-11th-Frame-Menu.pdf',
+  leagueSchedule: 'assets/media/originals/2024-2025_Fall_League_Schedule.jpg',
+  googleReviewButton: 'assets/media/originals/click-to-leave-review-small.png',
+  facebookReviewButton: 'assets/media/originals/facebook_review_button_2019.png',
 };

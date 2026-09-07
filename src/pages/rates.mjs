@@ -14,10 +14,10 @@ ${pageHero({ eyebrow: 'Plan Your Event · Rates', title: 'Rates & Specials', lea
     <div class="grid grid--2">
       <div class="card card--dark rays" data-reveal>
         <span class="badge badge--dark">${icon('glowing')} Tuesdays &amp; Thursdays</span>
-        <div class="price mt-1" style="color:#fff">$12<small style="color:rgba(255,255,255,.6)">/ person</small></div>
+        <div class="price mt-1">$12<small>/ person</small></div>
         <h3 class="mt-1">UNLIMITED Bowling — shoes included</h3>
         <p class="muted">Tuesdays &amp; Thursdays from 9:00 PM – Midnight.</p>
-        <p class="caption mb-0" style="color:rgba(255,255,255,.55)">Minimum 3 person charge per lane.</p>
+        <p class="caption mb-0">Minimum 3 person charge per lane.</p>
       </div>
       <div class="card card--tint" data-reveal style="--i:1">
         <span class="badge">${icon('trophy')} Local USBC members</span>

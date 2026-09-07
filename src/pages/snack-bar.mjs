@@ -10,6 +10,7 @@ ${pageHero({ eyebrow: 'Amenities · Snack Bar', title: 'Snack Bar Menu', lead: '
 
 <section class="section section--flush-top">
   <div class="container">
+    <h2 class="visually-hidden">At the snack bar</h2>
     <div class="grid grid--3 mb-2">
       ${[['forkKnife', 'Lane delivery', 'Order from your lane and we bring it to you.'], ['pizza', 'Fresh & affordable', 'Guests rave about the pizzas — and the prices.'], ['beer', 'Two bars', 'Alcoholic and non-alcoholic drinks, plus specials in the bar.']].map(([ic, t, d], i) => `<div class="card" data-reveal style="--i:${i}"><div class="feature-row"><span class="icon-badge">${icon(ic)}</span><div class="feature"><h3>${t}</h3><p>${d}</p></div></div></div>`).join('')}
     </div>

@@ -10,6 +10,7 @@ ${pageHero({ eyebrow: 'Amenities · Pro Shop', title: 'Check Out Our Brand New P
 
 <section class="section section--flush-top">
   <div class="container">
+    <h2 class="visually-hidden">About the Pro Shop</h2>
     <div class="split split--60">
       <div data-reveal>${photo({ src: originals.proShop, alt: 'Check Out Our Brand New Pro Shop in Tyler, TX!', ar: '3 / 2', label: 'Pro Shop' })}</div>
       <div class="stack" data-reveal="right">

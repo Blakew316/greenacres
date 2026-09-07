@@ -40,10 +40,13 @@
   /* ---------------------------------------------------------- mobile sheet */
   const sheet = $('#mobile-sheet');
   const menuBtn = $('.menu-btn');
-  let lastFocus = null;
+  let lastFocus = null; let sheetTimer = null;
+  const setInert = (on) => $$('.topbar, .site-header, #main, .site-footer, .dock').forEach((el) => { if (on) el.setAttribute('inert', ''); else el.removeAttribute('inert'); });
   const openSheet = () => {
     if (!sheet) return;
+    clearTimeout(sheetTimer);
     lastFocus = document.activeElement;
+    setInert(true);
     sheet.hidden = false;
     requestAnimationFrame(() => requestAnimationFrame(() => sheet.classList.add('is-open')));
     document.body.classList.add('sheet-open');
@@ -55,7 +58,8 @@
     sheet.classList.remove('is-open');
     document.body.classList.remove('sheet-open');
     menuBtn && menuBtn.setAttribute('aria-expanded', 'false');
-    setTimeout(() => { sheet.hidden = true; }, 420);
+    setInert(false);
+    sheetTimer = setTimeout(() => { sheet.hidden = true; }, 420);
     if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
   };
   $$('[data-open-sheet]').forEach((b) => b.addEventListener('click', (e) => { e.preventDefault(); openSheet(); }));
@@ -164,12 +168,20 @@
         if (now >= o && now < c) { open = true; label = `Open now · closes ${shortTime(today[2])}`; }
         else if (now < o) label = `Opens at ${shortTime(today[1])}`;
       }
-      if (!open && yest) { const o = parseTime(yest[1]); let c = parseTime(yest[2]); if (c <= o) { c -= 1440; if (now < c) { open = true; label = `Open now · closes ${shortTime(yest[2])}`; } } }
+      if (!open && yest) { const o = parseTime(yest[1]); const c = parseTime(yest[2]); if (c <= o && now < c) { open = true; label = `Open now · closes ${shortTime(yest[2])}`; } }
       chip.textContent = label; chip.classList.toggle('is-closed', !open); chip.hidden = false;
     }
   } catch (e) { /* non-critical */ }
 
   let showToast = () => {};
+  /* ------------------------------------------------- review tiles */
+  $$('.quote--clamp').forEach((q) => {
+    const text = $('.quote__text', q); const btn = $('.quote__more', q); if (!text || !btn) return;
+    const check = () => { if (!q.classList.contains('is-expanded')) q.classList.toggle('has-more', text.scrollHeight > text.clientHeight + 2); };
+    btn.addEventListener('click', () => { const open = q.classList.toggle('is-expanded'); btn.setAttribute('aria-expanded', String(open)); $('span', btn).textContent = open ? 'Show less' : 'Read more'; });
+    check(); window.addEventListener('resize', check); if (document.fonts && document.fonts.ready) document.fonts.ready.then(check);
+  });
+
   /* ------------------------------------------------------------- lightbox */
   const lightbox = $('#lightbox');
   const galleryLinks = $$('.gallery-grid__item');
@@ -181,10 +193,10 @@
     const img = $('img', lightbox);
     img.src = a.getAttribute('href'); img.alt = a.dataset.alt || '';
     $('.lightbox__count', lightbox).textContent = `${lbIndex + 1} / ${galleryLinks.length}`;
-    lightbox.hidden = false; document.body.classList.add('sheet-open');
+    lightbox.hidden = false; document.body.classList.add('sheet-open'); setInert(true);
     $('.lightbox__close', lightbox).focus({ preventScroll: true });
   };
-  const closeLightbox = () => { if (lightbox && !lightbox.hidden) { lightbox.hidden = true; document.body.classList.remove('sheet-open'); galleryLinks[lbIndex] && galleryLinks[lbIndex].focus({ preventScroll: true }); } };
+  const closeLightbox = () => { if (lightbox && !lightbox.hidden) { lightbox.hidden = true; document.body.classList.remove('sheet-open'); setInert(false); galleryLinks[lbIndex] && galleryLinks[lbIndex].focus({ preventScroll: true }); } };
   galleryLinks.forEach((a, i) => a.addEventListener('click', (e) => { e.preventDefault(); if ($('.photo.is-missing', a)) { showToast('This photo isn’t available yet.', null, null, 2500); return; } showLB(i); }));
   if (lightbox) {
     $('.lightbox__close', lightbox).addEventListener('click', closeLightbox);
@@ -217,7 +229,7 @@
         if (!ctrl) return;
         const group = $$('input[type="radio"], input[type="checkbox"]', f);
         let valid = ctrl.checkValidity();
-        if (group.length && group[0].required) valid = group.some((g) => g.checked);
+        if (group.length && (group[0].required || 'required' in f.dataset)) valid = group.some((g) => g.checked);
         f.classList.toggle('is-invalid', !valid); if (!valid) ok = false;
       });
       return ok;
@@ -232,6 +244,7 @@
       const endpoint = form.dataset.endpoint || form.getAttribute('action') || window.location.pathname;
       const fd = new FormData(form);
       const hasFile = $$('input[type="file"]', form).some((i) => i.files && i.files.length);
+      if (!hasFile) for (const [k, v] of Array.from(fd.entries())) if (v instanceof File) fd.delete(k);
       try {
         const res = await fetch(endpoint, { method: 'POST', body: hasFile ? fd : new URLSearchParams(fd), headers: hasFile ? {} : { 'Content-Type': 'application/x-www-form-urlencoded' } });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -243,6 +256,8 @@
         submitBtn && submitBtn.classList.remove('is-loading'); submitBtn && submitBtn.removeAttribute('aria-disabled');
       }
     });
+    // fields that become required based on another answer (data-requires="name=value")
+    $$('[data-requires]', form).forEach((el) => { const [n, v] = el.dataset.requires.split('='); const sync = () => { const picked = $(`input[name="${n}"]:checked`, form); el.required = !!picked && picked.value === v; }; $$(`input[name="${n}"]`, form).forEach((r) => r.addEventListener('change', sync)); sync(); });
     // date inputs: today or later
     $$('input[type="date"][data-min-today]', form).forEach((d) => { d.min = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 10); });
   });
@@ -278,8 +293,8 @@
         const promptUpdate = (sw) => showToast('A new version of the site is ready.', 'Refresh', () => sw.postMessage({ type: 'SKIP_WAITING' }), 0);
         if (reg.waiting && navigator.serviceWorker.controller) promptUpdate(reg.waiting);
         reg.addEventListener('updatefound', () => { const sw = reg.installing; sw && sw.addEventListener('statechange', () => { if (sw.state === 'installed' && navigator.serviceWorker.controller) promptUpdate(sw); }); });
-        let refreshing = false;
-        navigator.serviceWorker.addEventListener('controllerchange', () => { if (!refreshing) { refreshing = true; location.reload(); } });
+        let refreshing = false; const hadController = !!navigator.serviceWorker.controller;
+        navigator.serviceWorker.addEventListener('controllerchange', () => { if (hadController && !refreshing) { refreshing = true; location.reload(); } });
       } catch (e) { /* SW unsupported or blocked */ }
     });
   }
@@ -295,8 +310,9 @@
   const dismissedAt = (() => { try { return +localStorage.getItem('gab:installDismissed') || 0; } catch (_) { return 0; } })();
   const recentlyDismissed = Date.now() - dismissedAt < 14 * 864e5;
   const visits = (() => { try { const v = (+sessionStorage.getItem('gab:visits') || 0) + 1; sessionStorage.setItem('gab:visits', String(v)); return v; } catch (_) { return 1; } })();
-  const openIOSHint = () => { if (!iosHint) return; iosHint.hidden = false; requestAnimationFrame(() => requestAnimationFrame(() => iosHint.classList.add('is-open'))); document.body.classList.add('sheet-open'); };
-  const closeIOSHint = () => { if (!iosHint || iosHint.hidden) return; iosHint.classList.remove('is-open'); document.body.classList.remove('sheet-open'); setTimeout(() => { iosHint.hidden = true; }, 420); };
+  let iosFocus = null; let iosTimer = null;
+  const openIOSHint = () => { if (!iosHint) return; clearTimeout(iosTimer); iosFocus = document.activeElement; iosHint.hidden = false; requestAnimationFrame(() => requestAnimationFrame(() => iosHint.classList.add('is-open'))); document.body.classList.add('sheet-open'); setInert(true); const c = $('.sheet__close', iosHint); c && c.focus({ preventScroll: true }); try { localStorage.setItem('gab:installDismissed', String(Date.now())); } catch (_) {} };
+  const closeIOSHint = () => { if (!iosHint || iosHint.hidden) return; iosHint.classList.remove('is-open'); document.body.classList.remove('sheet-open'); setInert(false); iosTimer = setTimeout(() => { iosHint.hidden = true; }, 420); if (iosFocus && iosFocus.focus) iosFocus.focus({ preventScroll: true }); };
   $$('[data-close-ios]').forEach((b) => b.addEventListener('click', closeIOSHint));
   const showBanner = () => { if (banner && !isStandalone && !recentlyDismissed) banner.hidden = false; };
   const hideBanner = (remember) => { if (banner) banner.hidden = true; if (remember) { try { localStorage.setItem('gab:installDismissed', String(Date.now())); } catch (_) {} } };
@@ -305,7 +321,8 @@
   if (isIOS && isSafari && !isStandalone && visits >= 2 && !recentlyDismissed) setTimeout(showBanner, 6000);
   const install = async () => {
     if (deferredPrompt) { deferredPrompt.prompt(); const { outcome } = await deferredPrompt.userChoice; deferredPrompt = null; hideBanner(outcome === 'dismissed'); return; }
-    if (isIOS || !('BeforeInstallPromptEvent' in window)) { hideBanner(false); openIOSHint(); return; }
+    if (isIOS) { hideBanner(false); openIOSHint(); return; }
+    hideBanner(true);
     showToast('Use your browser menu and choose “Install app” or “Add to Home Screen”.', null, null, 6000);
   };
   $$('[data-install]').forEach((b) => b.addEventListener('click', (e) => { e.preventDefault(); install(); }));

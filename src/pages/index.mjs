@@ -6,12 +6,12 @@ const pinSVG = `<svg viewBox="0 0 30 86" aria-hidden="true"><path d="M15 2c-5 0-
 const highlights = [
   { title: 'Now taking online reservations!', text: 'Secure a lane ahead of time or book your party in a few taps.', cta: 'Reserve Now', href: 'reservations.html', img: originals.heroReservations, kicker: 'Reservations', icon: 'calendar', span: 'span-4' },
   { title: 'Play all of the Classics in our Arcade!', text: 'With renovations, new menus and other changes, Green Acres Bowl is now better than ever!', cta: 'More Specials', href: 'specials-and-events.html', img: originals.heroArcade, kicker: 'Arcade & events', icon: 'gamepad', span: 'span-2' },
-  { title: 'Bowling 7 Days a Week!', text: 'Open every day with weekly specials and glow bowling nights.', cta: 'Check Out Our Rates', href: 'rates.html', img: originals.heroSevenDays, kicker: 'Rates', icon: 'ticket', span: 'span-2' },
+  { title: 'Bowling 7 Days a Week!', text: 'Open every day, with weekly specials for families, college nights and leagues.', cta: 'Check Out Our Rates', href: 'rates.html', img: originals.heroSevenDays, kicker: 'Rates', icon: 'ticket', span: 'span-2' },
   { title: 'Check out our Pro Shop for all of your bowling needs!', text: 'Buy, fix and accessorize your bowling ball and gear.', cta: 'Our Pro Shop', href: 'pro-shop.html', img: originals.heroProShop, kicker: 'Pro Shop', icon: 'bag', span: 'span-4' },
 ];
 
-const amenities = ['32 Lanes', 'Food & Drinks Delivered to Your Lane', 'Full-Service Bars', 'Pool Tables', 'Arcade Games', 'TVs for Every Game', 'Live Music', 'Karaoke', 'Glow Bowling', 'Dance Lessons', 'League Nights', 'Pro Shop', 'Birthday Parties', 'Corporate Events'];
-const amenityIcons = ['lanes', 'forkKnife', 'martini', 'pool', 'gamepad', 'tv', 'music', 'mic', 'glowing', 'sparkles', 'trophy', 'bag', 'cake', 'building'];
+const amenities = ['32 Lanes', 'Food & Drinks Delivered to Your Lane', 'Full-Service Bars', 'Pool Tables', 'Arcade Games', 'TVs for Every Game', 'Live Music', 'Karaoke', 'Dance Lessons', 'League Nights', 'Pro Shop', 'Birthday Parties', 'Corporate Events'];
+const amenityIcons = ['lanes', 'forkKnife', 'martini', 'pool', 'gamepad', 'tv', 'music', 'mic', 'sparkles', 'trophy', 'bag', 'cake', 'building'];
 
 const quick = [
   { label: 'About Us', href: 'about.html', icon: 'info', text: 'Generations of bowling fun since 1957.' },
@@ -126,7 +126,7 @@ export default {
       <div class="stack" style="--stack:1rem" data-reveal="right">
         ${photo({ src: originals.arcade, alt: 'Inside Green Acres Bowl', ar: '4 / 3', label: 'Green Acres Bowl' })}
         <div class="grid grid--2">
-          ${[['lanes', '32 lanes', 'Synthetic and wood lanes'], ['forkKnife', 'Lane delivery', 'Food and drinks to you'], ['pool', 'Pool tables', 'Plus arcade classics'], ['tv', 'Sports on TV', 'Watch every big game']].map(([ic, t, d], i) => `<div class="card"><div class="feature-row"><span class="icon-badge">${icon(ic)}</span><div class="feature"><h3>${t}</h3><p>${d}</p></div></div></div>`).join('')}
+          ${[['lanes', '32 lanes', 'Renovated, improved lanes'], ['forkKnife', 'Lane delivery', 'Food and drinks to you'], ['pool', 'Pool tables', 'Plus arcade classics'], ['tv', 'Sports on TV', 'Watch every big game']].map(([ic, t, d], i) => `<div class="card"><div class="feature-row"><span class="icon-badge">${icon(ic)}</span><div class="feature"><h3>${t}</h3><p>${d}</p></div></div></div>`).join('')}
         </div>
       </div>
     </div>
@@ -135,7 +135,7 @@ export default {
 
 <section class="section section--flush-top" aria-label="Amenities">
   <div class="marquee" data-reveal>
-    <div class="marquee__track">${[0, 1].map(() => amenities.map((a, i) => `<span class="pill-list" style="display:contents"><li style="list-style:none">${icon(amenityIcons[i])} ${a}</li></span>`).join('')).join('')}</div>
+    <div class="marquee__track">${[0, 1].map((copy) => `<ul class="pill-list marquee__group" ${copy ? 'aria-hidden="true"' : ''}>${amenities.map((a, i) => `<li>${icon(amenityIcons[i])} ${a}</li>`).join('')}</ul>`).join('')}</div>
   </div>
 </section>
 

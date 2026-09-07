@@ -40,7 +40,7 @@ ${pageHero({ eyebrow: 'Plan Your Event', title: "Okay, we'll spare you the terri
     <div class="grid grid--3">
       <div class="card" data-reveal><span class="icon-badge">${icon('users')}</span><h3>Family Fun Night</h3><p class="muted mb-0">Every Monday, Wednesday and Friday.</p></div>
       <div class="card" data-reveal style="--i:1"><span class="icon-badge">${icon('moon')}</span><h3>College Night</h3><p class="muted mb-0">Every Tuesday and Thursday — plus $12 unlimited bowling from 9 PM to midnight. <a href="rates.html">See rates ${icon('arrowRight', { size: 14 })}</a></p></div>
-      <div class="card" data-reveal style="--i:2"><span class="icon-badge">${icon('glowing')}</span><h3>Glow Bowling</h3><p class="muted mb-0">Thursday, Friday and Saturday nights.</p></div>
+      <div class="card" data-reveal style="--i:2"><span class="icon-badge">${icon('trophy')}</span><h3>League nights</h3><p class="muted mb-0">Find a bowling league to call your own. <a href="leagues.html">See leagues ${icon('arrowRight', { size: 14 })}</a></p></div>
     </div>
   </div>
 </section>

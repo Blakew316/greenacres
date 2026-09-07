@@ -11,7 +11,7 @@ self.addEventListener('install', (event) => {
     // Add individually so one missing optional asset never blocks install.
     await Promise.allSettled(PRECACHE.map((u) => cache.add(new Request(u, { cache: 'reload' }))));
   })());
-  self.skipWaiting();
+  // No skipWaiting() here: a new worker waits until the page offers “Refresh”.
 });
 
 self.addEventListener('activate', (event) => {
@@ -41,9 +41,9 @@ self.addEventListener('fetch', (event) => {
     event.respondWith((async () => {
       try {
         const preload = await event.preloadResponse;
-        if (preload) { const c = await caches.open(SHELL); c.put(stripSearch(request), preload.clone()); return preload; }
+        if (preload) { if (preload.ok && !preload.redirected) { const c = await caches.open(SHELL); c.put(stripSearch(request), preload.clone()); } return preload; }
         const fresh = await fetch(request);
-        const c = await caches.open(SHELL); c.put(stripSearch(request), fresh.clone());
+        if (fresh.ok && !fresh.redirected) { const c = await caches.open(SHELL); c.put(stripSearch(request), fresh.clone()); }
         return fresh;
       } catch (e) {
         const cached = await caches.match(stripSearch(request)) || await caches.match(request);

@@ -26,7 +26,7 @@ async function build() {
 
   // Offline + 404 pages (minimal shell, no reserve band)
   const simple = (id, title, h1, text, extra = '') => layout({
-    id, title, description: text, reserve: 'none',
+    id, title, description: text, reserve: 'none', baseHref: '/',
     body: `<section class="section rays rays--light" style="min-height:60vh;display:grid;align-content:center"><div class="container container--narrow center">
 <div class="icon-badge icon-badge--lg mx-auto">${extra}</div>
 <h1>${h1}</h1><p class="lead">${text}</p>

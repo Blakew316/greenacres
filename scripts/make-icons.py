@@ -110,7 +110,7 @@ app_icon(1024, text=False).resize((96, 96), Image.LANCZOS).save(os.path.join(OUT
 
 # ---- iOS splash screens (portrait) — logo centred on white
 SPLASH = [
-    (1290, 2796, 'iphone-15-pro-max'), (1179, 2556, 'iphone-15-pro'), (1284, 2778, 'iphone-14-plus'),
+    (1320, 2868, 'iphone-16-pro-max'), (1206, 2622, 'iphone-16-pro'), (1290, 2796, 'iphone-15-pro-max'), (1179, 2556, 'iphone-15-pro'), (1284, 2778, 'iphone-14-plus'),
     (1170, 2532, 'iphone-14'), (1125, 2436, 'iphone-x'), (1242, 2688, 'iphone-11-pro-max'),
     (828, 1792, 'iphone-11'), (750, 1334, 'iphone-se'), (2048, 2732, 'ipad-pro-13'), (1668, 2388, 'ipad-pro-11'),
     (1640, 2360, 'ipad-air'), (1620, 2160, 'ipad-10'),

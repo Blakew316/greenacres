@@ -55,10 +55,11 @@ export function mapEmbed({ height = 360 } = {}) {
 }
 
 export function reviewCard(r, i = 0) {
-  return `<article class="card quote" data-reveal style="--i:${i % 3}">
+  return `<article class="card quote quote--clamp" data-reveal style="--i:${i % 3}">
   <div class="quote__mark">${icon('quote')}</div>
   <p class="quote__text">${esc(r.text)}</p>
-  <div class="quote__author"><span class="avatar" aria-hidden="true">${initials(r.name)}</span><div>${esc(r.name)}<div class="stars" aria-label="5 out of 5 stars">${icon('starFill').repeat(5)}</div></div></div>
+  <button class="quote__more" type="button" aria-expanded="false"><span>Read more</span>${icon('chevronDown')}</button>
+  <div class="quote__author"><span class="avatar" aria-hidden="true">${initials(r.name)}</span><div>${esc(r.name)}<div class="stars" role="img" aria-label="5 out of 5 stars">${icon('starFill').repeat(5)}</div></div></div>
 </article>`;
 }
 
@@ -94,9 +95,9 @@ export const field = ({ name, label, type = 'text', required = false, hint = '',
   ${hint ? `<span class="field__hint">${hint}</span>` : ''}
   <span class="field__error">Please complete this field.</span>
 </div>`;
-export const textarea = ({ name, label, required = false, hint = '', placeholder = '', rows = 5 }) => `<div class="field">
+export const textarea = ({ name, label, required = false, hint = '', placeholder = '', rows = 5, attrs = '' }) => `<div class="field">
   <label class="field__label" for="${name}">${esc(label)}${required ? '<span class="req" aria-hidden="true">*</span>' : ''}</label>
-  <textarea class="textarea" id="${name}" name="${name}" rows="${rows}" ${required ? 'required' : ''} ${placeholder ? `placeholder="${esc(placeholder)}"` : ''}></textarea>
+  <textarea class="textarea" id="${name}" name="${name}" rows="${rows}" ${required ? 'required' : ''} ${placeholder ? `placeholder="${esc(placeholder)}"` : ''} ${attrs}></textarea>
   ${hint ? `<span class="field__hint">${hint}</span>` : ''}
   <span class="field__error">Please complete this field.</span>
 </div>`;
@@ -109,7 +110,7 @@ export const select = ({ name, label, options, required = false, hint = '', plac
   ${hint ? `<span class="field__hint">${hint}</span>` : ''}
   <span class="field__error">Please choose an option.</span>
 </div>`;
-export const choices = ({ name, label, options, type = 'radio', required = false, hint = '' }) => `<div class="field" role="group" aria-labelledby="${name}-label">
+export const choices = ({ name, label, options, type = 'radio', required = false, hint = '' }) => `<div class="field" role="group" aria-labelledby="${name}-label" ${required ? 'data-required aria-required="true"' : ''}>
   <span class="field__label" id="${name}-label">${esc(label)}${required ? '<span class="req" aria-hidden="true">*</span>' : ''}</span>
   <div class="choices">${options.map((o, i) => `<label class="choice"><input type="${type}" name="${name}${type === 'checkbox' ? '[]' : ''}" value="${esc(o)}" ${required && type === 'radio' ? 'required' : ''}><span>${esc(o)}</span></label>`).join('')}</div>
   ${hint ? `<span class="field__hint">${hint}</span>` : ''}
@@ -148,14 +149,14 @@ export function reservationForm() {
   ${select({ name: 'occasion', label: 'Occasion', required: true, options: ['Open bowling', 'Birthday party', 'Corporate event', 'Team building', 'School event', 'Day care', 'Church event', 'College night', 'League practice', 'Full facility rental', 'Other'] })}
   ${field({ name: 'lanes', label: 'Lanes needed', type: 'number', attrs: 'min="1" max="32" inputmode="numeric"', placeholder: '1', hint: 'Up to 6 bowlers per lane works best.' })}
 </div>
-${textarea({ name: 'notes', label: 'Anything else?', placeholder: 'Shoe sizes, food & drink, glow bowling, decorations…', rows: 4 })}
+${textarea({ name: 'notes', label: 'Anything else?', placeholder: 'Shoe sizes, food & drink, decorations…', rows: 4 })}
 ${securityCheck()}
 ${formClose({ label: 'Request reservation', note: 'Requests are confirmed by our front desk. Prefer to book instantly? Use Book Now above.' })}`;
 }
 
 /* ----------------------------------------------------------------- shell */
 const splash = [
-  [1290, 2796, 430, 932, 3], [1179, 2556, 393, 852, 3], [1284, 2778, 428, 926, 3], [1170, 2532, 390, 844, 3],
+  [1320, 2868, 440, 956, 3], [1206, 2622, 402, 874, 3], [1290, 2796, 430, 932, 3], [1179, 2556, 393, 852, 3], [1284, 2778, 428, 926, 3], [1170, 2532, 390, 844, 3],
   [1125, 2436, 375, 812, 3], [1242, 2688, 414, 896, 3], [828, 1792, 414, 896, 2], [750, 1334, 375, 667, 2],
   [2048, 2732, 1024, 1366, 2], [1668, 2388, 834, 1194, 2], [1640, 2360, 820, 1180, 2], [1620, 2160, 810, 1080, 2],
 ];
@@ -187,7 +188,7 @@ function navItem(item, activeId) {
   const active = item.id === activeId || (has && item.children.some((c) => c.id === activeId));
   const inner = `${esc(item.label)}${has ? icon('chevronDown') : ''}`;
   const trigger = has
-    ? (item.href ? `<a class="primary-nav__link" href="${item.href}" aria-expanded="false" aria-haspopup="true">${inner}</a>` : `<button class="primary-nav__link" type="button" aria-expanded="false" aria-haspopup="true">${inner}</button>`)
+    ? (item.href ? `<a class="primary-nav__link" href="${item.href}" aria-expanded="false">${inner}</a>` : `<button class="primary-nav__link" type="button" aria-expanded="false">${inner}</button>`)
     : `<a class="primary-nav__link" href="${item.href}" ${active ? 'aria-current="page"' : ''}>${inner}</a>`;
   const mega = has ? `<div class="mega" role="group" aria-label="${esc(item.label)}">${item.children.map((c) => `<a class="mega__item ${c.id === activeId ? 'is-active' : ''}" href="${c.href}"><span class="mega__icon">${icon(c.icon)}</span><span><span class="mega__title">${esc(c.label)}</span><br><span class="mega__desc">${esc(c.desc)}</span></span></a>`).join('')}</div>` : '';
   return `<li class="primary-nav__item ${has ? 'has-children' : ''} ${active ? 'is-active' : ''}">${trigger}${mega}</li>`;
@@ -242,7 +243,7 @@ export function reserveSection({ eyebrow = 'Reservations', title = 'Reserve your
 </section>`;
 }
 
-export function layout({ id, title, description, body, reserve = 'band', headExtra = '', bodyClass = '' }) {
+export function layout({ id, title, description, body, reserve = 'band', headExtra = '', bodyClass = '', baseHref = '' }) {
   const meta = pages.find((p) => p.id === id) || pages[0];
   const reserveHref = reserve === 'form' ? '#reserve' : 'reservations.html#reserve';
   const hoursData = esc(JSON.stringify(site.hours.map(([d, o, c]) => [['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].indexOf(d), o, c])));
@@ -250,6 +251,7 @@ export function layout({ id, title, description, body, reserve = 'band', headExt
 <html lang="en" class="no-js" data-page="${id}">
 <head>
 <meta charset="utf-8">
+${baseHref ? `<base href="${baseHref}">` : ''}
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
@@ -321,21 +323,21 @@ ${reserve === 'form' ? reserveSection() : reserve === 'band' ? reserveBand() : '
         <a class="footer-review" href="${site.googleReview}" target="_blank" rel="noopener">${icon('google')} Leave us a Google review</a>
       </div>
       <div>
-        <h3 class="footer-h">Explore</h3>
+        <h2 class="footer-h">Explore</h2>
         <ul class="footer-links">${nav.flatMap((n) => (n.children ? n.children : [n])).map((n) => `<li><a href="${n.href}">${icon('chevronRight')}${esc(n.label)}</a></li>`).join('')}</ul>
       </div>
       <div>
-        <h3 class="footer-h">Hours</h3>
+        <h2 class="footer-h">Hours</h2>
         ${hoursList({ compact: true })}
       </div>
       <div>
-        <h3 class="footer-h">Visit</h3>
+        <h2 class="footer-h">Visit</h2>
         <div class="card card--dark" style="padding:1.1rem 1.2rem">${infoList({ dark: true })}</div>
       </div>
     </div>
     <div class="footer-bottom">
       <span>Copyright © ${new Date().getFullYear()} ${site.name}, all rights reserved. ${site.address.street}, ${site.address.city}, ${site.address.state} ${site.address.zip} · ${site.phonePretty}</span>
-      <span class="footer-bottom__links"><a class="footer-pill" href="${site.facebook}" target="_blank" rel="noopener">${icon('facebook')} ${esc(site.managementNote)}</a><a class="footer-pill" href="#" data-install>${icon('install')} Install app</a><span class="footer-pill offline-badge">${icon('wifiOff')} Offline</span></span>
+      <span class="footer-bottom__links"><a class="footer-pill" href="${site.facebook}" target="_blank" rel="noopener">${icon('facebook')} ${esc(site.managementNote)}</a><button class="footer-pill" type="button" data-install>${icon('install')} Install app</button><span class="footer-pill offline-badge">${icon('wifiOff')} Offline</span></span>
     </div>
   </div>
 </footer>
@@ -366,7 +368,7 @@ ${reserve === 'form' ? reserveSection() : reserve === 'band' ? reserveBand() : '
       <a class="btn btn--secondary" href="${site.directionsUrl}" target="_blank" rel="noopener">${icon('mapPin')} Directions</a>
     </div>
     ${nav.map((n) => sheetGroup(n, id)).join('')}
-    <div class="sheet__foot"><a href="${site.facebook}" target="_blank" rel="noopener">${icon('facebook')} Follow us</a><a href="#" data-install>${icon('install')} Install app</a></div>
+    <div class="sheet__foot"><a href="${site.facebook}" target="_blank" rel="noopener">${icon('facebook')} Follow us</a><button class="sheet__foot-btn" type="button" data-install>${icon('install')} Install app</button></div>
   </div>
 </div>
 

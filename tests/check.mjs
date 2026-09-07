@@ -55,9 +55,9 @@ while (queue.length) {
   const ctx = await browser.newContext({ viewport: { width: 1366, height: 900 }, serviceWorkers: 'block' });
   const page = await ctx.newPage();
   const errors = [];
-  page.on('console', (m) => { if (m.type() !== 'error') return; const loc = (m.location() && m.location().url) || ''; if (/assets\/(img|docs)\//.test(loc)) return; errors.push(m.text() + (loc ? ' @ ' + loc : '')); });
+  page.on('console', (m) => { if (m.type() !== 'error') return; const loc = (m.location() && m.location().url) || ''; if (/assets\/media\//.test(loc)) return; errors.push(m.text() + (loc ? ' @ ' + loc : '')); });
   page.on('pageerror', (e) => errors.push(String(e)));
-  page.on('requestfailed', (r) => { const u = r.url(); if (u.startsWith(base) && !/assets\/(img|docs)\//.test(u)) errors.push('request failed: ' + u); });
+  page.on('requestfailed', (r) => { const u = r.url(); if (u.startsWith(base) && !/assets\/media\//.test(u)) errors.push('request failed: ' + u); });
   const res = await page.goto(base + file, { waitUntil: 'networkidle', timeout: 30000 });
   console.log(`• ${file} → ${res.status()}`);
   if (res.status() !== 200) note(`${file} returned ${res.status()}`);
@@ -71,7 +71,7 @@ while (queue.length) {
     if (!h || h.startsWith('#') || /^(tel|mailto|javascript):/.test(h)) continue;
     const u = internal(h); if (!u) continue;
     const target = u.pathname.replace(/^\//, '') || 'index.html';
-    if (/assets\/(img|docs)\//.test(target)) continue; // optional originals
+    if (/assets\/media\//.test(target)) continue; // optional originals
     if (!existsSync(path.join(ROOT, target))) note(`${file}: broken link ${h}`);
     else if (target.endsWith('.html') && !seen.has(target)) queue.push(target);
     if (u.hash) { const id = u.hash.slice(1); const targetFile = target === file ? null : target; if (!targetFile) { const ok = await page.locator(`#${CSS.escape ? id : id}`).count(); if (!ok) note(`${file}: missing anchor ${u.hash}`); } else { const html = await readFile(path.join(ROOT, targetFile), 'utf8'); if (!html.includes(`id="${id}"`)) note(`${file}: ${h} anchor #${id} not found in ${targetFile}`); } }

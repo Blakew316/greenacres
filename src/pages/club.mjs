@@ -10,6 +10,7 @@ ${pageHero({ eyebrow: 'Amenities · 11th Frame Club', title: "Check out Green Ac
 
 <section class="section section--flush-top">
   <div class="container">
+    <h2 class="visually-hidden">Club amenities</h2>
     <div class="grid grid--4 mb-2">
       ${[['martini', 'Full bar', 'Drink specials and a dance floor.'], ['pool', 'Pool tables', 'Rack one up between frames.'], ['tv', 'Several TVs', 'Including a 72" screen for game day.'], ['cake', 'Private parties', 'Seasonal and birthday parties — booking is free of charge.']].map(([ic, t, d], i) => `<div class="card" data-reveal style="--i:${i}"><span class="icon-badge">${icon(ic)}</span><h3>${t}</h3><p class="muted mb-0">${d}</p></div>`).join('')}
     </div>
