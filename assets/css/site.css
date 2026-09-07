@@ -752,7 +752,7 @@ body { padding-bottom: calc(var(--tabbar-h) + var(--sab)); }
 .lane-step__n { font-size: var(--fs-caption); font-weight: 700; color: var(--brand-500); letter-spacing: 0.1em; }
 .lane-step h3 { font-size: 1rem; margin: 0.15rem 0 0.2rem; }
 .lane-step p { margin: 0; font-size: var(--fs-caption); color: var(--text-3); }
-@media (max-width: 720px) { .lane-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } .lane-scene { height: 260vh; } }
+@media (max-width: 720px) { .lane-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } .lane-scene { height: 260vh; } .strike-flash { left: 34%; font-size: clamp(1.6rem, 8.5vw, 2.6rem); } }
 .strike-flash { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(0.8); font-size: clamp(2.6rem, 8vw, 6rem); font-weight: 800; letter-spacing: -0.04em; color: var(--brand); opacity: 0; pointer-events: none; transition: opacity 0.5s var(--ease), transform 0.6s var(--ease-out); text-shadow: 0 10px 30px rgba(32, 88, 120, 0.25); }
 .lane-scene.is-strike .strike-flash { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 @media (prefers-reduced-motion: reduce) { .lane-scene { height: auto; } .lane-scene__sticky { position: static; height: auto; } .ball { transform: translateX(var(--travel, 700px)); } .lane-step { opacity: 1; transform: none; } }
