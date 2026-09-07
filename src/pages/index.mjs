@@ -99,7 +99,7 @@ export default {
     </div>
     <div class="scoreboard" data-reveal style="--i:1">
       <div class="stat"><div class="stat__value"><span data-count="${site.lanes}">0</span></div><div class="stat__label">Lanes</div></div>
-      <div class="stat"><div class="stat__value"><span data-count="${site.founded}">0</span></div><div class="stat__label">Serving Tyler since</div></div>
+      <div class="stat"><div class="stat__value"><span data-count="${site.founded}" data-plain>0</span></div><div class="stat__label">Serving Tyler since</div></div>
       <div class="stat"><div class="stat__value"><span data-count="7">0</span><sup>days</sup></div><div class="stat__label">Open every week</div></div>
       <div class="stat"><div class="stat__value"><span data-count="2">0</span></div><div class="stat__label">Snack &amp; drink bars</div></div>
     </div>

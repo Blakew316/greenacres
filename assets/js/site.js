@@ -94,17 +94,17 @@
   /* ------------------------------------------------------------ counters */
   const counters = $$('[data-count]');
   if (counters.length) {
-    const fmt = (n, dec) => dec ? n.toFixed(dec) : Math.round(n).toLocaleString('en-US');
+    const fmt = (n, dec, plain) => dec ? n.toFixed(dec) : plain ? String(Math.round(n)) : Math.round(n).toLocaleString('en-US');
     const run = (el) => {
       const target = parseFloat(el.dataset.count);
-      const dec = (el.dataset.count.split('.')[1] || '').length;
+      const dec = (el.dataset.count.split('.')[1] || '').length; const plain = 'plain' in el.dataset;
       const dur = 1400; const t0 = performance.now();
       const step = (t) => {
         const k = Math.min(1, (t - t0) / dur); const e = 1 - Math.pow(1 - k, 3);
-        el.textContent = fmt(target * e, dec);
+        el.textContent = fmt(target * e, dec, plain);
         if (k < 1) requestAnimationFrame(step);
       };
-      if (reduceMotion) { el.textContent = fmt(target, dec); return; }
+      if (reduceMotion) { el.textContent = fmt(target, dec, plain); return; }
       requestAnimationFrame(step);
     };
     const cio = new IntersectionObserver((entries) => entries.forEach((en) => { if (en.isIntersecting) { run(en.target); cio.unobserve(en.target); } }), { threshold: 0.5 });

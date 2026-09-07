@@ -463,6 +463,12 @@ a.card { color: inherit; display: block; }
 .stat--light .stat__value { color: var(--navy-900); }
 .stat--light .stat__label { color: var(--text-3); }
 
+/* Masonry (CSS columns) for variable-height cards */
+.masonry { columns: 1; column-gap: clamp(1rem, 2vw, 1.5rem); }
+.masonry > * { break-inside: avoid; page-break-inside: avoid; margin: 0 0 clamp(1rem, 2vw, 1.5rem); display: block; }
+.masonry .quote { display: flex; height: auto; }
+@media (min-width: 640px) { .masonry { columns: 2; } }
+@media (min-width: 960px) { .masonry { columns: 3; } }
 /* Quotes / reviews */
 .quote { position: relative; display: flex; flex-direction: column; gap: 1rem; height: 100%; }
 .quote__mark { color: var(--brand-300); }
