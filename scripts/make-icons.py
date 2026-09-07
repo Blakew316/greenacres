@@ -45,36 +45,34 @@ def fit(im, box_w, box_h):
     return im.resize((max(1, int(im.width * r)), max(1, int(im.height * r))), Image.LANCZOS)
 
 def app_icon(size=1024, maskable=False, text=True):
-    """Logo on a soft white→silver ground with 'Green Acres / Bowling Alley' beneath."""
+    """Logo with 'Green Acres / Bowling Alley' beneath, composed as one block that is
+    centred exactly in the square (inside the safe zone for maskable icons)."""
     im = vgradient((size, size), (255, 255, 255), (236, 240, 243))
     d = ImageDraw.Draw(im)
-    # subtle brand glow behind the logo (hue of the logo only)
     glow = Image.new('RGBA', (size, size), (0, 0, 0, 0))
-    gd = ImageDraw.Draw(glow)
-    gd.ellipse([size * 0.12, size * 0.02, size * 0.88, size * 0.62], fill=BRAND + (28,))
+    ImageDraw.Draw(glow).ellipse([size * 0.14, size * 0.16, size * 0.86, size * 0.72], fill=BRAND + (26,))
     glow = glow.filter(ImageFilter.GaussianBlur(size * 0.09))
     im.alpha_composite(glow)
-    # safe zone: maskable icons must keep content in the inner 80%
-    pad = size * (0.16 if maskable else 0.09)
-    inner_w = size - 2 * pad
-    if text:
-        logo_box_h = size * (0.40 if maskable else 0.46)
-        l = fit(logo, inner_w, logo_box_h)
-        ly = int(size * (0.20 if maskable else 0.14))
-        im.alpha_composite(l, (int((size - l.width) / 2), ly))
-        # wordmark beneath the logo
-        f1 = font(int(size * (0.088 if maskable else 0.1)))
-        f2 = font(int(size * (0.088 if maskable else 0.1)))
-        lines = [('Green Acres', f1), ('Bowling Alley', f2)]
-        y = ly + l.height + int(size * (0.055 if maskable else 0.065))
-        for txt, f in lines:
-            bbox = d.textbbox((0, 0), txt, font=f)
-            tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
-            d.text(((size - tw) / 2 - bbox[0], y - bbox[1]), txt, font=f, fill=NAVY)
-            y += th + int(size * 0.028)
-    else:
-        l = fit(logo, inner_w, size - 2 * pad)
+    # maskable icons must keep everything inside the inner 80% circle
+    inner = size * (0.62 if maskable else 0.82)
+    l = fit(logo, inner, inner * 0.42)
+    if not text:
         im.alpha_composite(l, (int((size - l.width) / 2), int((size - l.height) / 2)))
+        return im
+    f = font(int(size * (0.082 if maskable else 0.096)))
+    lines = ['Green Acres', 'Bowling Alley']
+    boxes = [d.textbbox((0, 0), t, font=f) for t in lines]
+    line_h = max(b[3] - b[1] for b in boxes)
+    gap_logo = int(size * 0.055)
+    gap_line = int(size * 0.022)
+    total = l.height + gap_logo + line_h * 2 + gap_line
+    y = int((size - total) / 2)
+    im.alpha_composite(l, (int((size - l.width) / 2), y))
+    y += l.height + gap_logo
+    for t, b in zip(lines, boxes):
+        tw = b[2] - b[0]
+        d.text((int((size - tw) / 2) - b[0], y - b[1]), t, font=f, fill=NAVY)
+        y += line_h + gap_line
     return im
 
 def favicon_tile(size):
