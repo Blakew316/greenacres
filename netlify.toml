@@ -2,7 +2,7 @@
 # also works on GitHub Pages, Vercel, Cloudflare Pages or any web server.
 [build]
   publish = "."
-  command = "node src/build.mjs"
+  command = "bash scripts/fetch-original-assets.sh || true; node src/build.mjs"
 
 [[headers]]
   for = "/sw.js"
