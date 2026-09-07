@@ -4,7 +4,7 @@
 export const site = {
   name: 'Green Acres Bowl',
   legalName: 'Green Acres Bowl, LP',
-  fullName: 'Green Acres Bowling Alley',
+  fullName: 'Green Acres Bowling Center',
   city: 'Tyler, TX',
   phone: '903-561-2911',
   phonePretty: '(903) 561-2911',

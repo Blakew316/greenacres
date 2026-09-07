@@ -48,7 +48,7 @@ All forms (reservation, contact, league sign-up, employment application) are sta
 
 ## PWA
 
-- Installable on iOS (Add to Home Screen), Android and desktop; icons use the logo with "Green Acres Bowling Alley" beneath it, plus a maskable variant and iOS splash screens.
+- Installable on iOS (Add to Home Screen), Android and desktop; icons use the logo with "Green Acres Bowling Center" beneath it, plus a maskable variant and iOS splash screens.
 - The service worker precaches every page and the app shell, refreshes pages network-first, and serves `offline.html` when needed. An in-page toast offers "Refresh" when a new version is deployed.
 - App shortcuts: Reserve a Lane, Rates, Snack Bar Menu, Contact.
 - Cross-document view transitions and link prefetching make page-to-page navigation feel instant.

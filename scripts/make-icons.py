@@ -45,7 +45,7 @@ def fit(im, box_w, box_h):
     return im.resize((max(1, int(im.width * r)), max(1, int(im.height * r))), Image.LANCZOS)
 
 def app_icon(size=1024, maskable=False, text=True):
-    """Logo with 'Green Acres / Bowling Alley' beneath, composed as one block that is
+    """Logo with 'Green Acres / Bowling Center' beneath, composed as one block that is
     centred exactly in the square (inside the safe zone for maskable icons)."""
     im = vgradient((size, size), (255, 255, 255), (236, 240, 243))
     d = ImageDraw.Draw(im)
@@ -60,7 +60,7 @@ def app_icon(size=1024, maskable=False, text=True):
         im.alpha_composite(l, (int((size - l.width) / 2), int((size - l.height) / 2)))
         return im
     f = font(int(size * (0.082 if maskable else 0.096)))
-    lines = ['Green Acres', 'Bowling Alley']
+    lines = ['Green Acres', 'Bowling Center']
     boxes = [d.textbbox((0, 0), t, font=f) for t in lines]
     line_h = max(b[3] - b[1] for b in boxes)
     gap_logo = int(size * 0.055)
@@ -119,7 +119,7 @@ for w, h, name in SPLASH:
     im.paste(l, (int((w - l.width) / 2), int(h * 0.42 - l.height / 2)), l)
     d = ImageDraw.Draw(im)
     f = font(int(w * 0.036))
-    txt = 'Green Acres Bowling Alley'
+    txt = 'Green Acres Bowling Center'
     bb = d.textbbox((0, 0), txt, font=f)
     d.text(((w - (bb[2] - bb[0])) / 2 - bb[0], int(h * 0.42 + l.height / 2 + w * 0.05)), txt, font=f, fill=BRAND)
     im.save(os.path.join(OUT, f'splash-{w}x{h}.png'), optimize=True)

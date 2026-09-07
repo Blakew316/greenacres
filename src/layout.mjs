@@ -155,7 +155,7 @@ ${formClose({ label: 'Request reservation', note: 'Requests are confirmed by our
 }
 
 /* ----------------------------------------------------------------- shell */
-const ICON_V = '3'; // bump to force phones/browsers to refetch home-screen icons
+const ICON_V = '4'; // bump to force phones/browsers to refetch home-screen icons
 const splash = [
   [1320, 2868, 440, 956, 3], [1206, 2622, 402, 874, 3], [1290, 2796, 430, 932, 3], [1179, 2556, 393, 852, 3], [1284, 2778, 428, 926, 3], [1170, 2532, 390, 844, 3],
   [1125, 2436, 375, 812, 3], [1242, 2688, 414, 896, 3], [828, 1792, 414, 896, 2], [750, 1334, 375, 667, 2],
